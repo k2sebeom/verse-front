@@ -10,12 +10,14 @@ public class StudioManager : MonoBehaviour
     private APIManager apiManager;
     private UIManager uIManager;
     private NetworkManager networkManager;
+    private RtcManager rtcManager;
 
     void Awake()
     {
         apiManager = GetComponent<APIManager>();
         uIManager = GetComponent<UIManager>();
         networkManager = GetComponent<NetworkManager>();
+        rtcManager = GetComponent<RtcManager>();
     }
 
     void OnConnect()
@@ -73,6 +75,7 @@ public class StudioManager : MonoBehaviour
         networkManager.root.Emit("perform", true);
         uIManager.reactionBanner.gameObject.SetActive(true);
         uIManager.SetStageMood(true, networkManager.socketId);
+        rtcManager.SetLocalMute(true);
     }
 
     public void StopPerform()
@@ -83,6 +86,7 @@ public class StudioManager : MonoBehaviour
         networkManager.root.Emit("perform", false);
         uIManager.reactionBanner.gameObject.SetActive(false);
         uIManager.SetStageMood(false, networkManager.socketId);
+        rtcManager.SetLocalMute(false);
     }
 
     void OnError()

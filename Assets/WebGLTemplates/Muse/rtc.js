@@ -1,4 +1,5 @@
 
+let localTrack;
 let remoteTracks = {};
 
 const client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
@@ -21,7 +22,11 @@ client.on("user-published", async (user, mediaType) => {
 
 async function joinRTC(appId, channel, token, uid) {
     await client.join(appId, channel, token, uid);
-    const localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
-    await client.publish([localAudioTrack]);
+    localTrack = await AgoraRTC.createMicrophoneAudioTrack();
+    await client.publish([localTrack]);
     console.log("publish success!");
+}
+
+async function setMuted(muted) {
+    localTrack.setMuted(muted);
 }

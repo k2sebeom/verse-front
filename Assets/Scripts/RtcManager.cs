@@ -15,6 +15,9 @@ public class RtcManager : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void SetVolume(string uid, int volume);
 
+    [DllImport("__Internal")]
+    private static extern void SetMuted(int muted);
+
     public int globalVolume = 100;
     public float threshold = 5f;
 
@@ -41,6 +44,11 @@ public class RtcManager : MonoBehaviour
         this.account = account;
         this.channelName = channelName;
         StartCoroutine(apiManager.GetRtcToken(channelName, account));
+    }
+
+    public void SetLocalMute(bool muted)
+    {
+        SetMuted(muted ? 1 : 0);
     }
 
     public void OnTokenResponse(string token)

@@ -7,5 +7,8 @@ mergeInto(LibraryManager.library, {
         if(track) {
             track.setVolume(volume);
         }
+    },
+    SetMuted: function (muted) {
+        setMuted(muted > 0);
     }
 });
