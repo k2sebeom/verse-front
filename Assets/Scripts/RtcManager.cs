@@ -12,8 +12,15 @@ public class RtcManager : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void JoinRTC(string appId, string channel, string token, string uid);
 
-    private APIManager apiManager;
+    [DllImport("__Internal")]
+    private static extern void SetVolume(string uid, int volume);
 
+    public int globalVolume = 100;
+    public float threshold = 5f;
+
+
+    private APIManager apiManager;
+    private PlayerManager playerManager;
 
     private string channelName;
     private string account;
@@ -21,6 +28,7 @@ public class RtcManager : MonoBehaviour
     void Awake()
     {
         apiManager = GetComponent<APIManager>();
+        playerManager = GetComponent<PlayerManager>();
     }
 
     public void Join(string account, string channelName)
@@ -33,5 +41,21 @@ public class RtcManager : MonoBehaviour
     public void OnTokenResponse(string token)
     {
         JoinRTC(appId, channelName, token, account);
+    }
+
+    void Update()
+    {
+        foreach (string sid in playerManager.others.Keys)
+        {
+            Transform tf = playerManager.others[sid];
+            float distance = (playerManager.me.transform.position - tf.position).magnitude;
+            float ratio = Mathf.Min(1f, 1f / Mathf.Pow(distance, 2));
+            int volume = Mathf.FloorToInt(ratio * globalVolume);
+            if (distance > threshold)
+            {
+                volume = 0;
+            }
+            SetVolume(sid, volume);
+        }
     }
 }
