@@ -25,6 +25,11 @@ public class RtcManager : MonoBehaviour
     private string channelName;
     private string account;
 
+    public void SetGlobalVolume(float val)
+    {
+        globalVolume = Mathf.FloorToInt(100f * val);
+    }
+
     void Awake()
     {
         apiManager = GetComponent<APIManager>();
