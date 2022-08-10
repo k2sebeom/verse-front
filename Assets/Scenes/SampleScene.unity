@@ -13143,6 +13143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appId: d929e0a1b619489082cc9ca3b4c3622e
+  uid: 0
 --- !u!1 &1342147485
 GameObject:
   m_ObjectHideFlags: 0

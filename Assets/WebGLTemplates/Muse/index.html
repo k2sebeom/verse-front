@@ -7,6 +7,7 @@
     <title>museVerse | museLIVE Universe</title>
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.13.0.js"></script>
     <meta property="og:title" content="museVerse - museLIVE Universe" />
     <meta property="og:description" content="Join the universe of museLIVE artists!" />
     <meta property="og:image" content="https://static.clubmuse.live/assets/provider-02.jpg"/>
@@ -23,6 +24,7 @@
      </style>
   </head>
   <body style="text-align: center">
+    <script src="./rtc.js"></script>
     <canvas id="unity-canvas"></canvas>
     <audio></audio>
     <script src="Build/{{{ LOADER_FILENAME }}}"></script>

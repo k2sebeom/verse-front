@@ -74,7 +74,6 @@ public class UIManager : MonoBehaviour
         {
             roomId = -1;
         }
-        rtcManager.Initialize();
         networkManager.Connect();
         if (roomId > 0)
         {
@@ -173,7 +172,7 @@ public class UIManager : MonoBehaviour
 
         signOutButton.SetActive(true);
 
-        rtcManager.Join(response.userAlias, $"Room-{roomId}");
+        rtcManager.Join(networkManager.root.Id, $"Room-{roomId}");
 
         if (playerManager.playerId == roomId)
         {
