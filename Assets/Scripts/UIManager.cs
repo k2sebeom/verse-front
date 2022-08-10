@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
     private NetworkManager networkManager;
     private APIManager apiManager;
     private StudioManager studioManager;
+    private RtcManager rtcManager;
 
     private int queryTokenId;
 
@@ -60,6 +61,7 @@ public class UIManager : MonoBehaviour
         apiManager = GetComponent<APIManager>();
         networkManager = GetComponent<NetworkManager>();
         studioManager = GetComponent<StudioManager>();
+        rtcManager = GetComponent<RtcManager>();
     }
 
     void Start()
@@ -72,7 +74,7 @@ public class UIManager : MonoBehaviour
         {
             roomId = -1;
         }
-
+        rtcManager.Initialize();
         networkManager.Connect();
         if (roomId > 0)
         {
@@ -170,6 +172,8 @@ public class UIManager : MonoBehaviour
         playerManager.playerId = response.id;
 
         signOutButton.SetActive(true);
+
+        rtcManager.Join(response.userAlias, $"Room-{roomId}");
 
         if (playerManager.playerId == roomId)
         {

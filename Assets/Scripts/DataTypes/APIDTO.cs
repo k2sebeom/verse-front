@@ -70,4 +70,17 @@ namespace APIDTO
     {
         public int museId;
     }
+
+    [Serializable]
+    public struct TokenRequest
+    {
+        public string channelName;
+        public string account;
+    }
+
+    [Serializable]
+    public struct TokenResponse
+    {
+        public string token;
+    }
 }

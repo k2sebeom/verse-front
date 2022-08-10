@@ -12,6 +12,7 @@ public class APIManager : MonoBehaviour
     public NetworkSetting setting;
 
     private UIManager uiManager;
+    private RtcManager rtcManager;
 
     [DllImport("__Internal")]
     private static extern void ToNextPage(int museId);
@@ -22,6 +23,7 @@ public class APIManager : MonoBehaviour
     void Awake()
     {
         uiManager = GetComponent<UIManager>();
+        rtcManager = GetComponent<RtcManager>();
     }
 
     public SignInResponse museCredentials;
@@ -57,6 +59,12 @@ public class APIManager : MonoBehaviour
     {
         RandomResponse response = JsonUtility.FromJson<RandomResponse>(resp);
         ToNextPage(response.museId);
+    }
+
+    private void HandleTokenResp(string resp)
+    {
+        TokenResponse response = JsonUtility.FromJson<TokenResponse>(resp);
+        rtcManager.OnTokenResponse(response.token);
     }
 
     public IEnumerator SendCode(string userNumber)
@@ -170,6 +178,34 @@ public class APIManager : MonoBehaviour
             else
             {
                 HandleRegisterResp(request.downloadHandler.text);
+            }
+        }
+    }
+
+    public IEnumerator GetRtcToken(string channelName, string account)
+    {
+        TokenRequest req = new TokenRequest();
+        req.channelName = channelName;
+        req.account = account;
+
+        string json = JsonUtility.ToJson(req);
+
+        using (UnityWebRequest request = UnityWebRequest.Post(setting.BASEURL + "/api/user/token", json))
+        {
+            byte[] rawJson = new UTF8Encoding().GetBytes(json);
+            request.uploadHandler = new UploadHandlerRaw(rawJson);
+
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError(request.error);
+            }
+            else
+            {
+                HandleTokenResp(request.downloadHandler.text);
             }
         }
     }

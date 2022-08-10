@@ -13009,6 +13009,7 @@ GameObject:
   - component: {fileID: 1305876343}
   - component: {fileID: 1305876342}
   - component: {fileID: 1305876345}
+  - component: {fileID: 1305876348}
   - component: {fileID: 1305876346}
   - component: {fileID: 1305876347}
   m_Layer: 0
@@ -13107,7 +13108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5296ff903560486a9f25290f4506474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setting: {fileID: 11400000, guid: 04a7b5370d1fa4248bb91207a30cfff2, type: 2}
+  setting: {fileID: 11400000, guid: 6294fe52fd3144bfa98a3030956ea473, type: 2}
   museCredentials:
     id: 0
     userAlias: 
@@ -13129,6 +13130,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82bd413ab48354ebda55e43250403e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1305876348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305876341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a676de4c7b494b509957b04f1376c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appId: d929e0a1b619489082cc9ca3b4c3622e
 --- !u!1 &1342147485
 GameObject:
   m_ObjectHideFlags: 0
