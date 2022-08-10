@@ -122,6 +122,7 @@ public class UIManager : MonoBehaviour
         {
             tokenIdField.text = $"Token {queryTokenId} is not yours";
         }
+        // TODO This should not be here
         SetMyVinyl(queryTokenId);
     }
 
