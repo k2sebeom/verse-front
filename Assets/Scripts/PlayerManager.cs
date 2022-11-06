@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject playerPrefab;
     public int playerId = 0;
 
-    public CharacterAppearance me;
+    public CharacterLook me;
     CharacterReaction reactor;
     public Dictionary<string, Transform> others = new Dictionary<string, Transform>();
 
@@ -30,18 +30,18 @@ public class PlayerManager : MonoBehaviour
     {
         Debug.Log($"{data.nickname} Joined");
         GameObject newPlayer = GameObject.Instantiate(playerPrefab);
-        newPlayer.GetComponentInChildren<CharacterAppearance>().SpriteSheetName = data.spriteName;
-        newPlayer.GetComponentInChildren<CharacterAppearance>().nameLabel.text = data.nickname;
+        newPlayer.GetComponentInChildren<CharacterLook>().SpriteSheetName = data.spriteName;
+        newPlayer.GetComponentInChildren<CharacterLook>().nameLabel.text = data.nickname;
         others[data.id] = newPlayer.transform.GetChild(0);
         others[data.id].position = new Vector2(data.pos[0], data.pos[1]);
-        others[data.id].GetComponentInChildren<CharacterAppearance>().vinyl.SetVinyl(data.tokenId);
+        others[data.id].GetComponentInChildren<CharacterLook>().vinyl.SetVinyl(data.tokenId);
     }
 
     public void OnPlayerVinyl(VinylResponse data)
     {
         if (others.ContainsKey(data.id))
         {
-            others[data.id].GetComponentInChildren<CharacterAppearance>().vinyl.SetVinyl(data.tokenId);
+            others[data.id].GetComponentInChildren<CharacterLook>().vinyl.SetVinyl(data.tokenId);
         }
     }
 
@@ -79,7 +79,7 @@ public class PlayerManager : MonoBehaviour
         }
         else if (others.ContainsKey(id))
         {
-            others[id].GetComponent<CharacterAppearance>().spotLight.intensity = on ? 0.8f : 0f;
+            others[id].GetComponent<CharacterLook>().spotLight.intensity = on ? 0.8f : 0f;
         }
     }
 
@@ -107,7 +107,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (others.ContainsKey(data.id))
         {
-            others[data.id].GetComponent<CharacterAppearance>().nameLabel.text = data.name;
+            others[data.id].GetComponent<CharacterLook>().nameLabel.text = data.name;
         }
     }
 
