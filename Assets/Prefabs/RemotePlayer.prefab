@@ -428,6 +428,7 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -609,7 +610,7 @@ GameObject:
   - component: {fileID: 7365972452483107948}
   - component: {fileID: 7365972452483107942}
   - component: {fileID: 7365972452483107945}
-  - component: {fileID: 7365972452483107946}
+  - component: {fileID: 7907745358495546692}
   - component: {fileID: 1808272047724723280}
   m_Layer: 0
   m_Name: Player_sprite
@@ -709,7 +710,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7365972452483107946
+--- !u!114 &7907745358495546692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -718,7 +719,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7365972452483107949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efe7024308bf728439c2e7fee6d6eb17, type: 3}
+  m_Script: {fileID: 11500000, guid: 6194b892b534d4cc894d7a85186a1c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tf: {fileID: 7365972452483107948}
@@ -726,9 +727,9 @@ MonoBehaviour:
   animator: {fileID: 7365972452483107945}
   spriteRenderer: {fileID: 7365972452483107942}
   nameLabel: {fileID: 163157656809981100}
-  spotLight: {fileID: 5218166446389211000}
   vinyl: {fileID: 5179261679733915208}
-  SpriteSheetName: chara_04
+  spotLight: {fileID: 5218166446389211000}
+  SpriteSheetName: chara_03
 --- !u!114 &1808272047724723280
 MonoBehaviour:
   m_ObjectHideFlags: 0
