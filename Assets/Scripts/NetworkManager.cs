@@ -61,6 +61,7 @@ public class NetworkManager : MonoBehaviour
 
     void OnConnect()
     {
+        Debug.Log("Connected!");
         playerManager.JoinRoom(uiManager.roomId);
     }
 

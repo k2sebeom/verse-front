@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject signInModal;
     public TMP_InputField phoneField;
     public TMP_InputField codeField;
+    public TMP_InputField nameField;
 
     public GameObject performButton;
 
@@ -180,6 +181,15 @@ public class UIManager : MonoBehaviour
             stageBlock.SetActive(false);
             backStageBlock.SetActive(false);
         }
+    }
+
+    public void JoinRoom() {
+        playerManager.isSignedIn = true;
+        string nickname = nameField.text;
+        playerManager.me.nameLabel.text = nickname;
+        networkManager.root.Emit("name", nickname);
+        rtcManager.Join(networkManager.root.Id, "CommonRoom");
+        CloseSignInModal();
     }
 
     public void OnPerform(PerformResponse data)
